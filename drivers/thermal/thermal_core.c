@@ -254,6 +254,10 @@ static int __init thermal_register_governors(void)
 	if (result)
 		return result;
 
+	result = thermal_gov_step_wise_hyst_register();
+	if (result)
+		return result;
+
 	result = thermal_gov_fair_share_register();
 	if (result)
 		return result;

@@ -72,7 +72,7 @@ config THERMAL_WRITABLE_TRIPS
 
 choice
 	prompt "Default Thermal governor"
-	default THERMAL_DEFAULT_GOV_STEP_WISE
+	default THERMAL_DEFAULT_GOV_STEP_WISE_HYST
 	help
 	  This option sets which thermal governor shall be loaded at
 	  startup. If in doubt, select 'step_wise'.
@@ -83,6 +83,13 @@ config THERMAL_DEFAULT_GOV_STEP_WISE
 	help
 	  Use the step_wise governor as default. This throttles the
 	  devices one step at a time.
+
+config THERMAL_DEFAULT_GOV_STEP_WISE_HYST
+	bool "step_wise_hyst"
+	select THERMAL_GOV_STEP_WISE_HYST
+	help
+	  Use the step_wise_hyst governor as default. This throttles the
+	  devices one step at a time and applies hysteresis.
 
 config THERMAL_DEFAULT_GOV_FAIR_SHARE
 	bool "fair_share"
@@ -119,6 +126,12 @@ config THERMAL_GOV_STEP_WISE
 	help
 	  Enable this to manage platform thermals using a simple linear
 	  governor.
+
+config THERMAL_GOV_STEP_WISE_HYST
+	bool "Step_wise_hyst thermal governor"
+	help
+	  Enable this to manage platform thermals using a simple linear
+	  governor with hysteresis support.
 
 config THERMAL_GOV_BANG_BANG
 	bool "Bang Bang thermal governor"
